@@ -1,32 +1,48 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <router-view></router-view>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+export default {
+  name: "app",
+  created() {
+    this.storage();
+    this.token();
+    // console.log(this.$store.state.token)
+  },
+  methods: {
+    //保存购物车数据
+    storage() {
+      if (localStorage.getItem("cartList")) {
+        this.$store.replaceState(
+          Object.assign(
+            {},
+            this.$store.state,
+            JSON.parse(localStorage.getItem("cartList"))
+          )
+        );
+      }
+      window.addEventListener("pagehide", () => {
+        localStorage.setItem("cartList", JSON.stringify(this.$store.state));
+      });
+    },
+    token() {
+      // console.log(this.$store.state.token);
+       return  this.$store.state.token = JSON.parse(localStorage.getItem('token'));
+       
     }
+    //  isLogin(state) {
+    //   if (state.token === 0) {
+    //     state.token = localStorage.getItem("token");
+    //   }
+    //   return state.token;
+    // },
   }
-}
+};
+</script>
+
+<style>
+@import "assets/css/base.css";
 </style>
