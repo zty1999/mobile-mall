@@ -4,27 +4,22 @@ import Vue from 'vue';
 import axios from "axios";
 
 // Full config:  https://github.com/axios/axios#request-config
-// axios.defaults.baseURL = "http://152.136.185.210:8000/api/n3";
-// axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 let config = {
-  baseURL: "http://152.136.185.210:8000/api/z8",
-  // baseURL: process.env.baseURL || process.env.apiUrl || ""
+  // baseURL: "http://152.136.185.210:8000/api/z8",
+  baseURL: process.env.VUE_APP_API_URL || "/api/z8",
   timeout: 5000, // Timeout
-  // withCredentials: true, // Check cross-site Access-Control
 };
 
 const _axios = axios.create(config);
 
 _axios.interceptors.request.use(
   function(config) {
-    // Do something before request is sent
     return config;
   },
   function(error) {
-    // Do something with request error
     return Promise.reject(error);
   }
 );
