@@ -10,7 +10,7 @@ import axios from "axios";
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 let config = {
-  baseURL: "http://152.136.185.210:8000/api/z8",
+  baseURL: "http://152.136.185.210:8000/api/w6",
   // baseURL: process.env.baseURL || process.env.apiUrl || ""
   timeout: 5000, // Timeout
   // withCredentials: true, // Check cross-site Access-Control

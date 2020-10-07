@@ -30,7 +30,15 @@ export default {
     },
     token() {
       // console.log(this.$store.state.token);
-       return  this.$store.state.token = JSON.parse(localStorage.getItem('token'));
+      let token = localStorage.getItem('token')
+      if(token) {
+         return  this.$store.state.token = JSON.parse(localStorage.getItem('token'))
+      }
+      else {
+        localStorage.setItem("token", JSON.stringify(0))
+        this.$store.state.token = JSON.parse(localStorage.getItem('token'))
+        return
+      }
        
     }
     //  isLogin(state) {
